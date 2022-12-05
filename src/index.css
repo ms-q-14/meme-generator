@@ -52,3 +52,8 @@ code {
   opacity: 80%;
   cursor: pointer;
 }
+
+.meme_img {
+  max-width: 1400px;
+  max-height: 750px;
+}
