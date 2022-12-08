@@ -2,13 +2,24 @@ import React from "react";
 import memesData from "../memesData";
 
 function UpperBody() {
-  const [img, setImg] = React.useState("images/meme-placeholder.png");
+  const [meme, setMeme] = React.useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "images/meme-placeholder.png",
+  });
+
+  const [allMemeImages, setAllMemeImages] = React.useState(memesData);
 
   function getImage() {
-    const memesArray = memesData.data.memes;
+    const memesArray = allMemeImages.data.memes;
     const randomNum = Math.floor(Math.random() * memesArray.length);
     const url = memesArray[randomNum].url;
-    setImg(url);
+    setMeme((prevMeme) => {
+      return {
+        ...prevMeme,
+        randomImage: url,
+      };
+    });
   }
 
   return (
@@ -29,7 +40,7 @@ function UpperBody() {
           <i class="bi bi-image">Generate a meme image</i>
         </button>
       </div>
-      <img className="meme_img" src={img} />
+      <img className="meme_img" src={meme.randomImage} />
     </div>
   );
 }
